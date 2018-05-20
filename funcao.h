@@ -9,7 +9,10 @@ struct ALUNOS{
 	struct ALUNOS *prox;
 };typedef struct ALUNOS alunos;
 alunos *cria();
-alunos *inserirdinamica(alunos *lista);
-alunos *inseriraleatorio(alunos *lista);
+int vazia(alunos *no);
+void inserirdinamica(alunos *lista);
+void inseriraleatorio(alunos *lista, int i);
 void escolher_pesquisa();
-
+void exibe(alunos *lista);
+void pesquisabinaria(alunos *lista);
+void pesquisasequencial(alunos *lista);

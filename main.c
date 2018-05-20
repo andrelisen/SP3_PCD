@@ -8,8 +8,9 @@
 #include "funcao.h"
 int main()
 {
-	int opc, opcinserir;
+	int opc, opcinserir, qnt=0, i;
 		alunos *controle;
+		int *vet=(int *) malloc(sizeof(int));
 		controle=cria();
 		do{
 			printf("--MENU--\n1)INSERIR\n2)CONSULTAR\n3)EXCLUIR\n4)EXIBIR TUDO\n5)ENCERRAR PROGRAMA\n-->DIGITE SUA OPCAO: ");
@@ -21,23 +22,41 @@ int main()
 										scanf("%d", &opcinserir);
 											if(opcinserir==1)
 											{
-											//	inseriraleatorio(controle);
+												printf("Qual a quantidade de alunos para gerar automaticamente?");
+													scanf("%d", &qnt);
+														for(i=0;i<qnt;i++)
+														{
+															inseriraleatorio(controle, qnt);
+														}
 											}
 												if(opcinserir==2)
 												{
-													controle = inserirdinamica(controle);
+													qnt++;
+													inserirdinamica(controle);
 												}
-													else{
-														printf("Tente novamente! Opcao errada\n\n");
-													}
 						break;
-						//case 2: 
-						//break;
+						opcinserir=0;
+						case 2: 
+								printf("Pesquisar como: 1-binaria\n2-sequencial\n-->opcao:");
+								scanf("%d", &opcinserir);
+								if(opcinserir==1)
+								{
+									pesquisabinaria(controle);
+								}
+									if(opcinserir==2)
+									{
+										pesquisasequencial(controle);
+									}
+						break;
 						//case 3:
 						//break;
-						//case 4: 
-						//break;
+						case 4: 
+						exibe(controle);
+						break;
 				}
 	}while(opc!=5);
+	free(controle);
 	return 0;
 }
+
+
