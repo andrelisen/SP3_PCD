@@ -125,9 +125,12 @@ int vazia(alunos *no) {
 alunos* pesquisabinaria(alunos *lista, int qnt) {
     alunos *aux = lista;
     alunos *a = lista;
-    int valor, matricula = 0, inicio = 0, meio = 0, fim = (qnt - 1), ok = 0, x = 0;
+    int valor, comparacao=0, matricula = 0, inicio = 0, meio = 0, fim = (qnt - 1), ok = 0, x = 0;
+    float tempo = 0;
+    clock_t i, f;
     printf("Digite a matricula: ");
     scanf("%d", &valor);
+    i = clock();
     while (inicio <= fim) {
         //percorre a lista até achar o aluno do meio
         meio = (inicio + fim) / 2;
@@ -139,7 +142,6 @@ alunos* pesquisabinaria(alunos *lista, int qnt) {
         }
         matricula = a->matricula; //pega a matricula
 
-
         if (valor == matricula) { //se for igual ao meio, exibe e encerra a busca
             printf("--Registro encontrado-- \n");
             printf("Nome do aluno: %s\tNumero de faltas: %d\tNota: %2.f\n", a->nome, a->faltas, a->nota);
@@ -150,21 +152,31 @@ alunos* pesquisabinaria(alunos *lista, int qnt) {
         } else { //se for maior, limita a busca a segunda metade
             inicio = meio + 1;
         }
+
+        comparacao++;
         aux = aux->prox;
     }
+    f = clock();
+    tempo = ((float) (f - i) / CLOCKS_PER_SEC);
     if (ok == 0) {
         printf("REGISTRO NAO ENCONTRADO");
         matricula = 999999;
     }
+
+    printf("Número de comparacoes:  %i\n", comparacao);
+    printf("Tempo de execucao:  %.2f ms\n", (tempo*1000));
     return a;
 }
 
 void pesquisasequencial(alunos *lista, int qnt) {
     alunos *aux = lista;
     int valor, cont = 0, i, count = 0;
+    float tempo = 0;
+    clock_t in, f;
     setbuf(stdin, NULL);
     printf("Digite a matricula :");
     scanf("%d", &valor);
+    i = clock();
     while (aux != NULL) {
         cont++;
         if (aux->matricula == valor) {
@@ -174,10 +186,13 @@ void pesquisasequencial(alunos *lista, int qnt) {
         }
         aux = aux->prox;
     }
+    f = clock();
+    tempo = ((float) (f - in) / CLOCKS_PER_SEC);
     if (count == 0) {
         printf("REGISTRO NAO ENCONTRADO");
     }
     printf("Quantidade de registros visitados: %d\n", cont);
+    printf("Tempo de execucao:  %.2f ms\n", (tempo*1000));
 }
 
 void excluir(alunos *lista, int qnt) {
@@ -195,7 +210,7 @@ void excluir(alunos *lista, int qnt) {
                 anterior = anterior->prox;
             } while (anterior->prox != a);
             anterior->prox = a->prox;//o anterior passa a apontar para o proximo do aluno a ser excluido
-            free(a); 
+            free(a);
             printf("Aluno excluido com sucesso!");
         }
     }
