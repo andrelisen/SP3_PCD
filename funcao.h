@@ -8,12 +8,14 @@ struct ALUNOS{
 	float nota;
 	struct ALUNOS *prox;
 };typedef struct ALUNOS alunos;
+
 alunos *cria();
 int vazia(alunos *no);
 void inserirdinamica(alunos *lista);
-void inseriraleatorio(alunos *lista, int quantidade);
+void inseriraleatorio(alunos *lista, int i);
 void escolher_pesquisa();
 void exibe(alunos *lista);
-void pesquisabinaria(alunos *lista, int qnt);
+alunos* pesquisabinaria(alunos *lista, int qnt);
 void pesquisasequencial(alunos *lista, int qnt);
 void ordena(alunos *lista);
+void excluir(alunos *lista, int qnt);
