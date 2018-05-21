@@ -64,56 +64,60 @@ void inserirdinamica(alunos *lista)
 }
 
 
-void inseriraleatorio(alunos *lista, int i)
+void inseriraleatorio(alunos *lista, int quantidade)
 {	
 	alunos *atual, *anterior;
-	int j, num, cont=0;
+	int j, num, cont=0, i;
 	char *letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	char *nome=(char *) malloc(sizeof(char));
-	srand(time(NULL));
-		alunos *novo=(alunos *)malloc(sizeof(alunos));
-			novo->matricula=rand()%i;
-				num = 3 + (rand() % 10);
-					for(j=0;j<num;j++)
+	 srand(time(NULL) );
+	  for(i=0;i<quantidade;i++)
+	 {
+			alunos *novo=(alunos *)malloc(sizeof(alunos));
+				novo->matricula= i+1;
+				printf("Valor de quantidade=%d e valor de matricula aleatorio =%d\n", i, novo->matricula);
+					num = 3 + (rand() % 10);
+						for(j=0;j<num;j++)
+						{
+							nome[j]=letras[ rand() % strlen(letras)];
+						}
+							strcpy(novo->nome,nome);
+								novo->faltas= rand() %60;
+									novo->nota= (rand() % 100)/10;	
+				atual = lista;
+				anterior = NULL;
+		if(vazia(atual)==1)
+		{
+			novo->prox=NULL;
+		lista->prox= novo;
+		} 
+		else{
+				while(atual != NULL && atual->matricula <= novo->matricula)
+				{
+					if(atual->matricula==novo->matricula)
 					{
-						nome[j]=letras[ rand() % strlen(letras)];
+						cont++;
 					}
-						strcpy(novo->nome,nome);
-							novo->faltas= rand() %60;
-								novo->nota= (rand() % 100)/10;	
-			atual = lista;
-			anterior = NULL;
-    if(vazia(atual)==1)
-    {
-		novo->prox=NULL;
-      lista->prox= novo;
-    } 
-    else{
-			while(atual != NULL && atual->matricula <= novo->matricula)
-			{
-				if(atual->matricula==novo->matricula)
-				{
-					cont++;
+					anterior = atual;
+					atual = atual->prox;
 				}
-				anterior = atual;
-				atual = atual->prox;
-			}
-			if(cont==0)
-			{
-			novo->prox = atual;
-				if(anterior == NULL)
+				if(cont==0)
 				{
-					lista->prox = novo;
-				} 
-				else
-				{
-				anterior->prox = novo;
+				novo->prox = atual;
+					if(anterior == NULL)
+					{
+						lista->prox = novo;
+					} 
+					else
+					{
+					anterior->prox = novo;
+					}
 				}
-			}
-				else{
-					printf("ERRO! Numeros de matricula iguais\n");
-				}
-    }
+					else{
+						printf("ERRO! Numeros de matricula iguais\n");
+					}
+		}
+	}
 }
 
 void exibe(alunos *lista)

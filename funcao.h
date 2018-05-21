@@ -11,7 +11,7 @@ struct ALUNOS{
 alunos *cria();
 int vazia(alunos *no);
 void inserirdinamica(alunos *lista);
-void inseriraleatorio(alunos *lista, int i);
+void inseriraleatorio(alunos *lista, int quantidade);
 void escolher_pesquisa();
 void exibe(alunos *lista);
 void pesquisabinaria(alunos *lista, int qnt);

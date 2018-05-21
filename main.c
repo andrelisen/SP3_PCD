@@ -8,7 +8,7 @@
 #include "funcao.h"
 int main()
 {
-	int opc, opcinserir, qnt=0, i;
+	int opc, opcinserir, qnt=0, i=0;
 		alunos *controle;
 		int *vet=(int *) malloc(sizeof(int));
 		controle=cria();
@@ -23,11 +23,8 @@ int main()
 											if(opcinserir==1)
 											{
 												printf("Qual a quantidade de alunos para gerar automaticamente?");
-													scanf("%d", &qnt);
-														for(i=0;i<qnt;i++)
-														{
-															inseriraleatorio(controle, qnt);
-														}
+													scanf("%d", &qnt);						
+																inseriraleatorio(controle, qnt);
 											}
 												if(opcinserir==2)
 												{
@@ -58,5 +55,3 @@ int main()
 	free(controle);
 	return 0;
 }
-
-
