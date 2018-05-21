@@ -14,6 +14,6 @@ void inserirdinamica(alunos *lista);
 void inseriraleatorio(alunos *lista, int i);
 void escolher_pesquisa();
 void exibe(alunos *lista);
-void pesquisabinaria(alunos *lista);
-void pesquisasequencial(alunos *lista);
+void pesquisabinaria(alunos *lista, int qnt);
+void pesquisasequencial(alunos *lista, int qnt);
 void ordena(alunos *lista);

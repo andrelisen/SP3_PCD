@@ -13,7 +13,7 @@ alunos *cria()
 	return lista;
 }
 
-void inserirdinamica(alunos *lista)(alunos *lista)
+void inserirdinamica(alunos *lista)
 {
    alunos *atual, *anterior;
    alunos *novo=(alunos*) malloc(sizeof(alunos));
@@ -143,3 +143,32 @@ int vazia(alunos *no)
 	}
 }
 
+
+void pesquisabinaria(alunos *lista, int qnt)
+{
+	
+}
+void pesquisasequencial(alunos *lista, int qnt)
+{
+	alunos *aux=lista;
+	int valor, cont=0, i, count=0;
+	setbuf(stdin, NULL);
+	printf("Digite a matricula :");	
+	scanf("%d", &valor);
+		while(aux!=NULL)
+		{
+			cont++;
+			if (aux->matricula == valor)
+			 {
+				 count++;
+				printf("--Registro encontrado-- \n");
+				printf("Nome:%s\tNota:%2.f\tNumero de faltas:%d\n", aux->nome, aux->nota, aux->faltas);
+			 }
+			 aux=aux->prox;
+		}
+			if (count==0)
+			{
+			printf("REGISTRO NAO ENCONTRADO");
+			}
+	printf("Quantidade de registros visitados: %d\n", cont);
+}
