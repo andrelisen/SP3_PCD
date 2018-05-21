@@ -16,3 +16,4 @@ void escolher_pesquisa();
 void exibe(alunos *lista);
 void pesquisabinaria(alunos *lista);
 void pesquisasequencial(alunos *lista);
+void ordena(alunos *lista);

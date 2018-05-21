@@ -12,9 +12,11 @@ alunos *cria()
 	lista->prox=NULL;
 	return lista;
 }
-void inserirdinamica(alunos *lista)
+
+void inserirdinamica(alunos *lista)(alunos *lista)
 {
-	alunos *novo=(alunos*) malloc(sizeof(alunos));
+   alunos *atual, *anterior;
+   alunos *novo=(alunos*) malloc(sizeof(alunos));
 	int cont=0;
 		printf("Nome do aluno:\n");
 		scanf("%s", novo->nome);
@@ -25,33 +27,46 @@ void inserirdinamica(alunos *lista)
 		scanf("%d", &novo->faltas);
 		printf("Nota do aluno %s:\n", novo->nome);
 		scanf("%f", &novo->nota);
-			novo->prox=NULL;	
-			
-			if(vazia(lista)==1)
-			{	
-				lista->prox=novo;
+		novo->prox=NULL;	
+			atual = lista;
+				anterior = NULL;
+    if(vazia(atual)==1)
+    {
+        novo->prox = NULL;
+       lista->prox= novo;
+    } 
+    else{
+			while(atual != NULL && atual->matricula <= novo->matricula)
+			{
+				if(atual->matricula==novo->matricula)
+				{
+					cont++;
+				}
+				anterior = atual;
+				atual = atual->prox;
+			}
+			if(cont==0)
+			{
+			novo->prox = atual;
+				if(anterior == NULL)
+				{
+					lista->prox = novo;
+				} 
+				else
+				{
+				anterior->prox = novo;
+				}
 			}
 				else{
-					alunos *aux=lista->prox;
-						while(aux->prox!=NULL)
-						{
-							if(aux->matricula==novo->matricula)
-							{
-							cont++;
-							}
-							aux=aux->prox;
-						}
-							if(cont==0)
-								{
-								aux->prox=novo;
-								}	
-								else{
-									printf("O numero de matricula ja existe, insira um diferente\n");
-									}
-					}	
+					printf("ERRO! Numeros de matricula iguais\n");
+				}
+    }
 }
+
+
 void inseriraleatorio(alunos *lista, int i)
 {	
+	alunos *atual, *anterior;
 	int j, num, cont=0;
 	char *letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	char *nome=(char *) malloc(sizeof(char));
@@ -66,30 +81,41 @@ void inseriraleatorio(alunos *lista, int i)
 						strcpy(novo->nome,nome);
 							novo->faltas= rand() %60;
 								novo->nota= (rand() % 100)/10;	
-									novo->prox=NULL;	
-				if(vazia(lista)==1)
-				{	
-					lista->prox=novo;
+			atual = lista;
+			anterior = NULL;
+    if(vazia(atual)==1)
+    {
+		novo->prox=NULL;
+      lista->prox= novo;
+    } 
+    else{
+			while(atual != NULL && atual->matricula <= novo->matricula)
+			{
+				if(atual->matricula==novo->matricula)
+				{
+					cont++;
 				}
+				anterior = atual;
+				atual = atual->prox;
+			}
+			if(cont==0)
+			{
+			novo->prox = atual;
+				if(anterior == NULL)
+				{
+					lista->prox = novo;
+				} 
+				else
+				{
+				anterior->prox = novo;
+				}
+			}
 				else{
-					alunos *aux=lista->prox;
-						while(aux->prox!=NULL)
-						{
-							if(aux->matricula==novo->matricula)
-							{
-							cont++;
-							}
-							aux=aux->prox;
-						}
-							if(cont==0)
-								{
-								aux->prox=novo;
-								}	
-								else{
-									printf("O numero de matricula ja existe, insira um diferente\n");
-									}
-					}	
-	}
+					printf("ERRO! Numeros de matricula iguais\n");
+				}
+    }
+}
+
 void exibe(alunos *lista)
 {
 	alunos *aux=lista->prox;
@@ -116,3 +142,4 @@ int vazia(alunos *no)
 		return 0;
 	}
 }
+

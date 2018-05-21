@@ -32,22 +32,22 @@ int main()
 												if(opcinserir==2)
 												{
 													qnt++;
-													inserirdinamica(controle);
+													ordena(controle);
 												}
 						break;
 						opcinserir=0;
-						case 2: 
-								printf("Pesquisar como: 1-binaria\n2-sequencial\n-->opcao:");
-								scanf("%d", &opcinserir);
-								if(opcinserir==1)
-								{
-									pesquisabinaria(controle);
-								}
-									if(opcinserir==2)
-									{
-										pesquisasequencial(controle);
-									}
-						break;
+						//case 2: 
+								//printf("Pesquisar como: 1-binaria\n2-sequencial\n-->opcao:");
+								//scanf("%d", &opcinserir);
+								//if(opcinserir==1)
+								//{
+									//pesquisabinaria(controle);
+								//}
+									//if(opcinserir==2)
+									//{
+										//pesquisasequencial(controle);
+									//}
+						//break;
 						//case 3:
 						//break;
 						case 4: 
